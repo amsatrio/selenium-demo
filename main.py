@@ -33,10 +33,11 @@ def clock_in_out(message: str):
 
     # clock in/out
     wait = WebDriverWait(driver, wait_time * 3)
-    comment_input_element = driver.find_element(By.ID, "txtRaComment")
     submit_button_element = wait.until(
             EC.element_to_be_clickable(By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")  
             )
+    comment_input_element = driver.find_element(By.ID, "txtRaComment")
+    
     comment_input_element.send_keys(message)
     submit_button_element.click()
 
