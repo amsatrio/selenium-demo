@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 import time
 import schedule
@@ -11,6 +13,7 @@ load_dotenv()
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
 url = os.getenv('URL')
+wait_time = 10
 
 def clock_in_out(message: str):
     
@@ -28,17 +31,16 @@ def clock_in_out(message: str):
 
     login_button_element.click()
 
-    time.sleep(20)
-
     # clock in/out
+    wait = WebDriverWait(driver, wait_time * 3)
     comment_input_element = driver.find_element(By.ID, "txtRaComment")
-    submit_button_element = driver.find_element(By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")  
-    # submit_button_element = driver.find_element(By.CSS_SELECTOR, "i.ManSwipe")  
-
+    submit_button_element = wait.until(
+            EC.element_to_be_clickable(By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")  
+            )
     comment_input_element.send_keys(message)
     submit_button_element.click()
 
-    time.sleep(10)
+    time.sleep(wait_time)
 
     driver.quit()
 
