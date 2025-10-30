@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 import time
 import schedule
 import os
@@ -15,10 +15,21 @@ password = os.getenv('PASSWORD')
 url = os.getenv('URL')
 wait_time = 10
 
+def get_driver(headless: bool):
+    if (headless == False):
+        return webdriver.Chrome()
+    
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new") 
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage") 
+    chrome_options.add_argument("--window-size=1920,1080")
+    return webdriver.Chrome(options=chrome_options)
+
 def clock_in_out(message: str):
     
     # initialize
-    driver = webdriver.Chrome()
+    driver = get_driver(True)
     driver.get(url)
 
     # login process
