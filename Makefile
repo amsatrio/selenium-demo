@@ -3,7 +3,7 @@ deps:
 start:
 	python3 main.py
 venv:
-	python -m venv testing-venv
-	source testing-venv/bin/activate
+	python -m venv ~/.venv/testing
+	source ~/.venv/testing/bin/activate
 conda:
 	source /home/user0/miniconda3/bin/activate web
