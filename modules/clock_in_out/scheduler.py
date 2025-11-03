@@ -2,9 +2,11 @@ import time
 import schedule
 
 from modules.clock_in_out.service import clock_in, clock_out
-from util import logger_util
+from modules.logger.service import loge, logi
 
 def main():
+    logi("start clock_in_out scheduler")
+
     schedule.every().monday.at("07:57").do(clock_in)
     schedule.every().tuesday.at("07:58").do(clock_in)
     schedule.every().wednesday.at("07:57").do(clock_in)
@@ -22,6 +24,6 @@ def main():
             schedule.run_pending()
             time.sleep(10)
     except KeyboardInterrupt:
-        logger_util.loge("Scheduler stopped by user.")
+        loge("Scheduler stopped by user.")
     except Exception as e:
-        logger_util.loge(f"An error occurred: {e}")    
+        loge(f"An error occurred: {e}")    

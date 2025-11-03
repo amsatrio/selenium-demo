@@ -3,10 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from enum import Enum
-
-class BrowserType(Enum):
-    CHROME = "chrome"
-    FIREFOX = "firefox"
+from model.webdriver import BrowserType
     
 def _driver_firefox(headless: bool):
     if (headless == False):

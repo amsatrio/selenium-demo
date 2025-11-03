@@ -4,19 +4,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import driver_config
 from config.environment_config import get_env
-from util import logger_util
+from modules.logger.service import loge, logi
 
 
 def _clock_in_out(message: str):
     
-    logger_util.logi(f"clock_in_out({message}) start")
+    logi(f"clock_in_out({message}) start")
     env = get_env()
     
     # initialize
     try:
         driver = driver_config.get_driver(driver_config.BrowserType.CHROME, True)
     except Exception as e:
-        logger_util.loge(f"An error occurred: {e}") 
+        loge(f"An error occurred: {e}") 
     driver.get(env.url)
     
     wait = WebDriverWait(driver, env.wait_time * 3)
@@ -41,7 +41,7 @@ def _clock_in_out(message: str):
     
     time.sleep(env.wait_time)
     
-    logger_util.logi(f"clock_in_out({message}) finish")
+    logi(f"clock_in_out({message}) finish")
     
     driver.quit()
 
