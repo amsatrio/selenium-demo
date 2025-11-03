@@ -1,3 +1,5 @@
 selenium
 schedule
 dotenv
+pydantic_settings
+lru_cache
