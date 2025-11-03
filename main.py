@@ -45,7 +45,7 @@ def clock_in_out(message: str):
     # clock in/out
     wait = WebDriverWait(driver, wait_time * 3)
     submit_button_element = wait.until(
-            EC.element_to_be_clickable(By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")  
+            EC.visibility_of_element_located(By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")  
             )
     comment_input_element = driver.find_element(By.ID, "txtRaComment")
     
@@ -64,7 +64,7 @@ def schedule_clock_out():
 
 if __name__ == "__main__":
     
-    schedule.every().monday.at("07:56").do(schedule_clock_in)
+    schedule.every().monday.at("09:25").do(schedule_clock_in)
     schedule.every().tuesday.at("07:58").do(schedule_clock_in)
     schedule.every().wednesday.at("07:57").do(schedule_clock_in)
     schedule.every().thursday.at("07:59").do(schedule_clock_in)
