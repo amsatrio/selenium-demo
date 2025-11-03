@@ -1,6 +1,7 @@
 .env
 app.log
 testing-venv
+log
 
-./*/__pychache__
-./*/*/__pychache__
+__pycache__
+./**/__pycache__
