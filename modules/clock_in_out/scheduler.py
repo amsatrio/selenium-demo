@@ -4,7 +4,6 @@ import schedule
 from modules.clock_in_out.service import clock_in, clock_out
 from util import logger_util
 
-
 def main():
     schedule.every().monday.at("07:57").do(clock_in)
     schedule.every().tuesday.at("07:58").do(clock_in)
