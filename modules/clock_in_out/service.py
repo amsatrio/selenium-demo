@@ -13,18 +13,15 @@ def _clock_in_out(message: str):
     env = get_env()
     
     # initialize
-    try:
-        driver = driver_config.get_driver(driver_config.BrowserType.CHROME, True)
-    except Exception as e:
-        loge(f"An error occurred: {e}") 
+    driver = driver_config.get_driver(driver_config.BrowserType.CHROME, True)
     driver.get(env.url)
     
     wait = WebDriverWait(driver, env.wait_time * 3)
 
     # login process
-    username_input_element = wait.until(EC.visibility_of_element_located(By.ID, "txtusername"))
-    password_input_element = wait.until(EC.visibility_of_element_located(By.ID, "txtpassword"))
-    login_button_element = wait.until(EC.visibility_of_element_located(By.ID, "btnsubmit"))
+    username_input_element = wait.until(EC.visibility_of_element_located((By.ID, "txtusername")))
+    password_input_element = wait.until(EC.visibility_of_element_located((By.ID, "txtpassword")))
+    login_button_element = wait.until(EC.visibility_of_element_located((By.ID, "btnsubmit")))
 
     username_input_element.send_keys(env.username)
     password_input_element.send_keys(env.password)
@@ -32,8 +29,8 @@ def _clock_in_out(message: str):
     login_button_element.click()
 
     # clock in/out
-    comment_input_element = wait.until(EC.visibility_of_element_located(By.ID, "txtRaComment"))
-    submit_button_element = wait.until(EC.visibility_of_element_located(By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]"))
+    comment_input_element = wait.until(EC.visibility_of_element_located((By.ID, "txtRaComment")))
+    submit_button_element = wait.until(EC.visibility_of_element_located((By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")))
     
     comment_input_element.send_keys(message)
     
