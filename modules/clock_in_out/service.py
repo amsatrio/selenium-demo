@@ -30,7 +30,7 @@ def _clock_in_out(message: str):
 
     # clock in/out
     comment_input_element = wait.until(EC.visibility_of_element_located((By.ID, "txtRaComment")))
-    submit_button_element = wait.until(EC.visibility_of_element_located((By.XPATH, "//i[@data-bind=\"click:function(data, event) { ManualSwipe.PerformAction('SWAP'); }\"]")))
+    submit_button_element = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[4]/div/div[2]/div[2]/div[2]/div/div/div[3]/div/div[3]/div/div/div/div[1]/div/div[4]/div[2]/a/i")))
     
     comment_input_element.send_keys(message)
     
